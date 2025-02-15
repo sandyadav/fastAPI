@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "c78f7634-7b25-4037-92bc-82487114cede",
+		"name": "FastAPI URL Scraper API",
+		"description": "Collection of API endpoints for uploading CSV files, checking task status, and viewing scraped results.EndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41950380"
+	},
+	"item": [
+		{
+			"name": "Upload CSV file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:80/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Task Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/status/{{task_id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"status",
+						"{{task_id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Scraped Results.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/results",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"results"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
