@@ -1,0 +1,32 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install alembic
+    - name: Run tests
+      run: |
+        pytest
+    - name: Build Docker image
+      run: |
+        docker build -t your-dockerhub-username/your-image-name .
+    - name: Login to DockerHub
+      run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Push Docker image
+      run: |
+        docker push your-dockerhub-username/your-image-name
